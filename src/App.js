@@ -1,9 +1,4 @@
 function App({ name }) {
-  return (
-    <div>
-      <p>{name ? `Hello ${name}` : "Hello"}</p>
-    </div>
-  );
+  return <div>{name ? `Hello ${name}` : "Hello"}</div>;
 }
-
 export default App;

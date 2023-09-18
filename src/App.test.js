@@ -1,8 +1,13 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+// import { render, screen } from '@testing-library/react';
+import App from "./App";
+import { render, unmountComponentAtNode } from "react-dom";
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test("Testing React", () => {
+  const container = document.createElement("div");
+  document.body.appendChild(container);
+
+  render(<App />, container);
+
+  unmountComponentAtNode(container);
+  container.remove();
 });

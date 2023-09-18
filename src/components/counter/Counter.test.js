@@ -18,24 +18,24 @@ afterEach(() => {
 });
 
 describe("counter", () => {
-  //   it("should be zero", () => {
-  //     act(() => {
-  //       render(<Counter />, container);
-  //     });
-  //     const countElm = document.querySelector("p");
-  //     expect(countElm.textContent).toBe("0");
-  //   });
-  //   test("should be one", () => {
-  //     act(() => {
-  //       render(<Counter />, container);
-  //     });
-  //     const buttonElm = document.querySelector("button");
-  //     act(() => {
-  //       buttonElm.dispatchEvent(new MouseEvent("click", { bubbles: true }));
-  //     });
-  //     const countElm = document.querySelector("p");
-  //     expect(countElm.textContent).toBe("1");
-  //   });
+  it("should be zero", () => {
+    act(() => {
+      render(<Counter />, container);
+    });
+    const countElm = document.querySelector("p");
+    expect(countElm.textContent).toBe("0");
+  });
+  test("should be one", () => {
+    act(() => {
+      render(<Counter />, container);
+    });
+    const buttonElm = document.querySelector("button");
+    act(() => {
+      buttonElm.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+    });
+    const countElm = document.querySelector("p");
+    expect(countElm.textContent).toBe("1");
+  });
   //! in here we test the timing
   test("should be one after 5second", () => {
     act(() => {

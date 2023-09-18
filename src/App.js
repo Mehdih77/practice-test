@@ -1,7 +1,7 @@
-function App() {
+function App({ name }) {
   return (
     <div>
-      <p>Hello</p>
+      <p>{name ? `Hello ${name}` : "Hello"}</p>
     </div>
   );
 }

@@ -27,23 +27,52 @@ import { act } from "react-dom/test-utils";
 
 /* ---------------###############------------------------- */
 
-//! setup : execute before any test
+// //! setup : execute before any test
+// let container = null;
+// beforeEach(() => {
+//   container = document.createElement("div");
+//   document.body.appendChild(container);
+// });
+
+// test("Testing React", () => {
+//   act(() => {
+//     render(<App />, container);
+//   });
+//   expect(container.textContent).toBe("Hello");
+// });
+
+// //! teardown : execute after any test
+// afterEach(() => {
+//   unmountComponentAtNode(container);
+//   container.remove();
+//   container = null;
+// });
+
+/* ---------------###############------------------------- */
+
 let container = null;
 beforeEach(() => {
   container = document.createElement("div");
   document.body.appendChild(container);
 });
-
-test("Testing React", () => {
-  act(() => {
-    render(<App />, container);
-  });
-  expect(container.textContent).toBe("Hello");
-});
-
-//! teardown : execute after any test
 afterEach(() => {
   unmountComponentAtNode(container);
   container.remove();
   container = null;
+});
+
+//! describe => use for better organization
+describe("Testing", () => {
+  test("without name", () => {
+    act(() => {
+      render(<App />, container);
+    });
+    expect(container.textContent).toBe("Hello");
+  });
+  test("with name", () => {
+    act(() => {
+      render(<App name="Tommy" />, container);
+    });
+    expect(container.textContent).toBe("Hello Tommy");
+  });
 });

@@ -26,7 +26,7 @@ beforeAll(() => server.listen()); // run server
 afterEach(() => server.resetHandlers()); // reset side-effects
 afterAll(() => server.close()); // stop server
 
-test("display post api", async () => {
+test("load and display post api", async () => {
   render(<Post url="/post/2" />);
 
   // do the click handler
@@ -56,4 +56,36 @@ test("display post api", async () => {
   expect(screen.getByRole("article")).toHaveTextContent("Sample Body");
   expect(screen.getByRole("button", { name: /load/i })).toBeInTheDocument();
   //   screen.debug();
+});
+
+test("show alert error", async () => {
+  render(<Post />);
+
+  fireEvent.click(screen.getByRole("button", { name: /load/i }));
+
+  await screen.findByRole("alert");
+
+  expect(screen.getByRole("alert")).toHaveTextContent("Error in loading post!");
+});
+
+test("show alert error from server response", async () => {
+  //! use for handle mock error from server
+  server.use(
+    rest.get("/post/:id", (req, res, ctx) => {
+      return res(
+        ctx.status(404),
+        ctx.json({
+          error: "Not Found 404",
+        })
+      );
+    })
+  );
+
+  render(<Post url="/post/0" />);
+
+  fireEvent.click(screen.getByRole("button", { name: /load/i }));
+
+  await screen.findByRole("alert");
+
+  expect(screen.getByRole("alert")).toHaveTextContent("Not Found 404");
 });

@@ -15,7 +15,7 @@ const postReducer = (state, action) => {
       };
     case "ERROR":
       return {
-        error: action.paylod,
+        error: action.payload,
         post: null,
         loading: false,
       };
@@ -46,11 +46,18 @@ function Post({ url }) {
           payload: data,
         });
       })
-      .catch((error) => {
-        dispatch({
-          type: "ERROR",
-          payload: "error",
-        });
+      .catch(({ response }) => {
+        if (response?.data) {
+          dispatch({
+            type: "ERROR",
+            payload: response.data.error,
+          });
+        } else {
+          dispatch({
+            type: "ERROR",
+            payload: "Error in loading post!",
+          });
+        }
       });
   }
 
@@ -71,7 +78,7 @@ function Post({ url }) {
           <article>{post.body}</article>
         </>
       )}
-      {error && <p role="alert">Erro in loading post!</p>}
+      {error && <p role="alert">{error}</p>}
     </div>
   );
 }

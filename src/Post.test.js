@@ -3,7 +3,7 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 
-const server = setupServer(() => {
+const server = setupServer(
   rest.get("/post/:id", (req, res, ctx) => {
     return res(
       ctx.json({
@@ -11,8 +11,8 @@ const server = setupServer(() => {
         body: "Sample Body",
       })
     );
-  });
-});
+  })
+);
 
 beforeAll(() => server.listen()); // run server
 afterEach(() => server.resetHandlers()); // reset side-effects

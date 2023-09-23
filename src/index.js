@@ -8,7 +8,7 @@ import Post from './Post';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Post />
+    <Post url="/post/2" />
   </React.StrictMode>
 );
 

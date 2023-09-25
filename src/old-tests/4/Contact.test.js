@@ -2,6 +2,7 @@ import { screen, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Contact from "./Contact";
 
+
 test("typing email", () => {
   render(<Contact />);
   userEvent.type(screen.getByRole("textbox"), "test@gmail.com");

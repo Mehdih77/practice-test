@@ -17,6 +17,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!axios)/\"",
+    "coverage": "yarn test --coverage --watchAll --collectCoverageFrom='src/components/**/*.{js,jsx}' --collectCoverageFrom='!src/components/**/*.{types,stories,constants,test,spec}.{js,jsx}",
     "eject": "react-scripts eject",
     "lint": "eslint --ignore-path .gitignore ."
   },
